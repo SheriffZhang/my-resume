@@ -113,9 +113,13 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 2.2rem;
-            font-weight: 700;
-            color: var(--accent);
+            overflow: hidden;
+        }
+
+        .avatar-inner img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
 
         @keyframes ringPulse {
@@ -344,6 +348,76 @@
             border-color: rgba(0,113,227,0.2);
         }
 
+        /* ===== 作品展示模块 ===== */
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+        }
+
+        .portfolio-item {
+            position: relative;
+            border-radius: 18px;
+            overflow: hidden;
+            aspect-ratio: 3/4;
+            cursor: pointer;
+            transition: all 0.5s var(--ios-easing);
+            border: 1px solid rgba(255,255,255,0.5);
+        }
+
+        .portfolio-item img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.6s var(--ios-easing);
+        }
+
+        .portfolio-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(to top, rgba(0,0,0,0.7) 0%, rgba(0,0,0,0.1) 50%, transparent 100%);
+            display: flex;
+            flex-direction: column;
+            justify-content: flex-end;
+            padding: 24px;
+            opacity: 0;
+            transition: opacity 0.4s var(--ios-easing);
+        }
+
+        .portfolio-overlay h4 {
+            color: #fff;
+            font-size: 1rem;
+            font-weight: 600;
+            margin-bottom: 4px;
+            transform: translateY(10px);
+            transition: transform 0.4s var(--ios-easing);
+        }
+
+        .portfolio-overlay p {
+            color: rgba(255,255,255,0.8);
+            font-size: 0.8rem;
+            transform: translateY(10px);
+            transition: transform 0.4s var(--ios-easing) 0.05s;
+        }
+
+        .portfolio-item:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.12);
+        }
+
+        .portfolio-item:hover img {
+            transform: scale(1.08);
+        }
+
+        .portfolio-item:hover .portfolio-overlay {
+            opacity: 1;
+        }
+
+        .portfolio-item:hover .portfolio-overlay h4,
+        .portfolio-item:hover .portfolio-overlay p {
+            transform: translateY(0);
+        }
+
         /* 动画延迟 & 关键帧 */
         .delay-1 { animation-delay: 0.1s; }
         .delay-2 { animation-delay: 0.2s; }
@@ -363,6 +437,7 @@
             .container { padding: 48px 16px 80px; }
             .exp-header { flex-direction: column; gap: 4px; }
             .skills-section { grid-template-columns: 1fr; }
+            .portfolio-grid { grid-template-columns: 1fr; }
         }
     </style>
 </head>
@@ -378,7 +453,9 @@
         <!-- 头部 -->
         <header>
             <div class="avatar-ring">
-                <div class="avatar-inner">张</div>
+                <div class="avatar-inner">
+                    <img src="头像.png" alt="张顺富头像">
+                </div>
             </div>
             <h1>张顺富</h1>
             <div class="typewriter" id="typewriter"><span class="cursor"></span></div>
@@ -502,6 +579,30 @@
                 <li>性格热情开朗，具备较强的共情能力与沟通表达能力，擅长跨部门协作与多方资源统筹</li>
                 <li>热爱中华优秀传统文化，深耕国学、佛道文化多年，拥有良好的人文素养与思辨能力，能为文化类策展项目提供独特的内容视角</li>
                 <li>始终秉持"强国有我"的信念，富有责任感与使命感，愿意在工作中全力以赴，持续创造可量化的价值</li>
+            </div>
+        </section>
+
+        <!-- 作品展示 -->
+        <section class="glass-card delay-5">
+            <div class="section-title">
+                <span class="section-icon" style="background:rgba(245,158,11,0.1);color:#f59e0b;">🎨</span>
+                作品展示
+            </div>
+            <div class="portfolio-grid">
+                <div class="portfolio-item">
+                    <img src="作品集1.png" alt="朱德故里文创展板">
+                    <div class="portfolio-overlay">
+                        <h4>朱德故里文创产品设计</h4>
+                        <p>A3展板 · 省级三等奖作品</p>
+                    </div>
+                </div>
+                <div class="portfolio-item">
+                    <img src="作品集2.png" alt="成都车展运营方案展板">
+                    <div class="portfolio-overlay">
+                        <h4>成都车展场馆运营方案</h4>
+                        <p>A3展板 · 展会全流程策划</p>
+                    </div>
+                </div>
             </div>
         </section>
     </div>
